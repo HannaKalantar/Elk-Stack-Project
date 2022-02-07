@@ -151,7 +151,7 @@ Once we are in the ansbile.cfg file, we are going to page down to the remote_use
 
 Now that we have set up both of our hosts and configure files we are now going to create a play book.
 
-Start your container (if it already is not started) and make sure on your command like is comming directly from your root. For example, check your screen to see if you see something like root@5e4b8f36e048:~#, you will want to move into /etc/ansible.
+Start your container (if it already is not started) and make sure on your command like is comming directly from your root. For example, check your screen to see if you see something like root@5e4b8f36e048:~#.
 
 When you are in here you are more than welcome to create a playboook, for this exercise we are creating a DVWA (Damn Vulnerable Website App) so this playbook will be for that.
 

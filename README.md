@@ -190,7 +190,7 @@ The final step in a playbook is making sure that the service is up and running. 
 
 Now that we have completed that we are going to run this command `ansible-playbook pentest.yml`.
 
-You should get this read...
+You should get this read:
 
 ![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output7.png)
 

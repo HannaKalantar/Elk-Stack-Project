@@ -158,7 +158,7 @@ When you are in here you are more than welcome to create a playboook, for this e
 
 Our first step will be to write the command `nano pentest.yml` this will create the playbook.
 
-The top of your playbook should read something like this..
+The top of your playbook should read something like this:
 
 ![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output1.png)
 

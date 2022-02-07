@@ -39,9 +39,9 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Web-1RT  | Dvwa/WS  | 10.0.0.5   | Linux            |
+| Web-2RT  | Dvwa/WS  | 10.0.0.6   | Linux            |
+| Elk-VM   | Elk      | 10.2.0.4   | Linux            |
 
 ### Access Policies
 
@@ -65,9 +65,10 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | Yes                 | 10.0.0.1 10.0.0.2    |
+| Web-1RT  | No                  |                      |
+| Web-2RT  | No                  |                      |
+| Elk-VM   | No                  |                      |
 
 ### Elk Configuration
 

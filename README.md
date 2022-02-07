@@ -160,7 +160,7 @@ Our first step will be to write the command `nano pentest.yml` this will create 
 
 The top of your playbook should read something like this..
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/Pentest1.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output1.png)
 
 This is declaring what you want the playbook to do. So we are Configuring a Web Virtual Machine using Docker.
 
@@ -168,31 +168,31 @@ Our host for this is going to be webservers hence why we uncommented and added t
 
 Last but not least, we have become true. Allowing for this entire playbook to come true.
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DockerUpdate.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output2.png)
 
 This segment is saying we want `docker.io` to install, so go ahead and force it to go through if we do not have it, update the cache to `yes`, name of the process we want and the state of the process.
 
 In the next segment we are installing pip3 which is pulling from a index of python libary that is unable to be carried with python when we install python.
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/pip3.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output3.png)
 
 The next step should look like this...
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DockerModule.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output4.png)
 
 The next step in the playbook is going to start the webserver and open the desired ports you want. This is also where you want to include the most important piece in all of the ansible-playbook in my opinion. That would be the restart_policy: `always`. If you do not include this, you will have to always restart the playbook in order for the webserver to start up instead of starting up when you start up your machine.
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DVWA.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output5.png)
 
 The final step in a playbook is making sure that the service is up and running. The first line in this is the name of the service we are running. The second line is the command we are running. The third line is the name of service we are running. Lastly, the fourth line is what we want to do with the service, do we want it enabled or disbaled.
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/service.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output6.png)
 
 Now that we have completed that we are going to run this command `ansible-playbook pentest.yml`.
 
 You should get this read...
 
-![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/Output.PNG)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/main/Images/output7.png)
 
 If you would like to test that the webserver is up an running you can ssh into your PRIVATE Ip address of your webserver using ssh @.
 

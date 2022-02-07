@@ -23,11 +23,15 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly accessable, in addition to restricting non-authorized to the network.
 - What aspect of security do load balancers protect? What is the advantage of a jump box?
-- Load balancers can protect you against a Ddos attack due to its ability to split the work between two different servers, allowing one to go down and the system will still be running due to the load balancer now turning all the task back on to only one server instead of both. What is the advantage of a jump box? The advantage of a jumpbox is that you have only one location that can be used to access multiple location this also allows for very good protection for all other locations you may have
+  - Load balancers can protect you against a Ddos attack due to its ability to split the work between two different servers, allowing one to go down and the system will still be running due to the load balancer now turning all the task back on to only one server instead of both. 
+- What is the advantage of a jump box? 
+  - The advantage of a jumpbox is that you have only one location that can be used to access multiple location this also allows for very good protection for all other locations you may have.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system matrix.
-- What does Filebeat watch for? Filebeat is watching for specific logs and specific set of files you have set. 
-- What does Metricbeat record? Metricbeat is recording the statics of the files and/or logs you have specified for it look for. 
+- What does Filebeat watch for? 
+  - Filebeat is watching for specific logs and specific set of files you have set. 
+- What does Metricbeat record? 
+  - Metricbeat is recording the statics of the files and/or logs you have specified for it look for. 
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
@@ -48,7 +52,7 @@ Only the jump box machine can accept connections from the Internet. Access to th
 
 Machines within the network can only be accessed by JumpBoxRedTeamProvisioner.
 - Which machine did you allow to access your ELK VM? What was its IP address? 
-- I accessed the elk vm from the container located in our ansible-playbooks. 
+  - I accessed the elk vm from the container located in our ansible-playbooks. 
 - To find the container that allows you to access the elk vm, follow these steps as I did...
   - Connect to your jump box machine
   - `sudo docker container list -a`
@@ -69,7 +73,7 @@ A summary of the access policies in place can be found in the table below.
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 - What is the main advantage of automating configuration with Ansible?
-- Main advantage would be being able to copy a master copy of the playbook and copying into the container that you want to run it off of. Making it easy for updating the file if need be and makes the tedious changes easy.
+  - Main advantage would be being able to copy a master copy of the playbook and copying into the container that you want to run it off of. Making it easy for updating the file if need be and makes the tedious changes easy.
 
 The playbook implements the following tasks:
 - The playbook will first install docker.io on to all webservers that have been underlined in the hosts file. after that it will follow and install the rest python3-pip, and - docker module.
@@ -105,39 +109,41 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to Kibana<also the public ip address of the elk server:port address that you opened((5601))> to check that the installation worked as expected.
 
 Answer the following questions to fill in the blanks:
-- Which file is the playbook? Where do you copy it? The playbook to set up elk is elkalicious.yml and you copy this file into the /etc/ansible/directory.
-- Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
-- Which URL do you navigate to in order to check that the ELK server is running? In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your url should read something similar to this http://13.77.219.27:5601/app/kibana#/home .
+- Which file is the playbook? Where do you copy it? 
+  - The playbook to set up elk is elk.yml and you copy this file into the /etc/ansible/directory.
+- Which URL do you navigate to in order to check that the ELK server is running? 
+  - In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your url should read something similar to this http://13.77.219.27:5601/app/kibana#/home.
 
 ### Step by Step from Downloading Docker to Setting up a Playbook
 
-In order to run this set of dockers you will want to run the commands as follows(this is of course with you having already set up a azure VM; sudo apt update
+In order to run this set of dockers you will want to run the commands as follows. 
+Note: This can only work if you already have set up a Azure VMs. 
 
-sudo apt install docker.io
+`sudo apt install docker.io`
 
-systemctl status docker ( run this command to ensure that your docker.io was installed and running)
+`systemctl status docker` (run this command to ensure that your docker.io was installed and running)
 
-After installation your process is not running please run sudo systemctl status docker to start your process
+After installation, if your process is not running please run `sudo systemctl status docker` to start your process.
 
-sudo docker pull cyberxsecurity/ansible ( this will pull the container((you must know the container/image name exactly)) and download the container for you to acces)
+`sudo docker pull cyberxsecurity/ansible` (this will pull the container((you must know the container/image name exactly)) and download the container for you to access)
 
-sudo docker run -ti cyberxsecurity/ansible:latest bash ( please only run this once if you run it more than once you will have one or more container)
+`sudo docker run -ti cyberxsecurity/ansible:latest bash` (please only run this once, if you run it more than once you will have one or more container)
 
-sudo docker container list -a ( this will show all available containers that you have after running ((run -ti)) this will also give you the name of the container for you to start
+`sudo docker container list -a` (this will show all available containers that you have after running ((run -ti)) this will also give you the name of the container for you to start)
 
-sudo docker start (for instance mine is tender_liskov) this will start your container and make it available to attach too.
+`sudo docker start` (for instance mine is quirky_herschel). This will start your container and make it available to attach too.
 
-sudo docker attach
+`sudo docker attach`
 
-sudo docker run -it cyberxsecurity/ansible /bin/bash (this will set up a host and config file within your container allowing you to set up the files how you want)
+`sudo docker run -it cyberxsecurity/ansible /bin/bash` (This command will set up a host and config file within your container allowing you to set up the files how you want).
 
-once you have done that you will want to locate the files.
+Once you have done that you will want to locate the files.
 
-cd /etc/ansible once you have moved into the directory /etc/ and moved into ansible you will want to run a ls to confirm your files are there.
+`cd /etc/ansible` once you have moved into the directory `/etc/` and moved into ansible you will want to run a `ls` to confirm your files are there.
 
-once you have done this you will be able to adjust the playbook files here. This will allow you to overwrite your playbooks, update your config files into include new webservers, or even new elk servers.
+Now that you have done all previous steps, you will be able to adjust the playbook files here. This will allow you to overwrite your playbooks, update your config files into include new webservers, or even new elk servers.
 
-The first file we should look at is the hosts file. In here you will want to remove the # next to [webservers] and underneath a couple of lines that are already added there you will want to add the IP addresses that you want for your webservers for example mine being 10.0.0.6. Once you have added that you will want to hit tab and add the following line next to it. ansible_python_interpreter=/usr/bin/python3 this will allow for your python-pip3 that you installed in your playbooks to work with out an issue.
+The first file we should look at is the hosts file. In here you will want to remove the # next to [webservers] and underneath a couple of lines that are already added there you will want to add the IP addresses that you want for your webservers for example mine being 10.0.0.6. Once you have added that you will want to hit tab and add the following line next to it. `ansible_python_interpreter=/usr/bin/python3` this will allow for your python-pip3 that you installed in your playbooks to work with out an issue.
 
 After we are done with the our changes to the hosts file we are going to save and exit and go into our configure file for ansible.
 
@@ -145,25 +151,25 @@ Once we are in the ansbile.cfg file, we are going to page down to the remote_use
 
 Now that we have set up both of our hosts and configure files we are now going to create a play book.
 
-Once we have started our contianer and we are at a screen that looks like root@5e4b8f36e048:~# you will want to move into /etc/ansible.
+Start your container (if it already is not started) and make sure on your command like is comming directly from your root. For example, check your screen to see if you see something like root@5e4b8f36e048:~#, you will want to move into /etc/ansible.
 
-When you are in here you are more than welcome to create a playboook, for this exercise we are creating a DVWA(Damn Vulnerable Website App) so this playbook will be for that.
+When you are in here you are more than welcome to create a playboook, for this exercise we are creating a DVWA (Damn Vulnerable Website App) so this playbook will be for that.
 
-Our first step will be nano pentest.yml this will create the playbook.
+Our first step will be to write the command `nano pentest.yml` this will create the playbook.
 
-The top of your playbook should read something like this
+The top of your playbook should read something like this..
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/Pentest1.PNG)
 
-This is declaring what you want the playbook to do. So we are Configuring a Web Virtual Machine using Docker
+This is declaring what you want the playbook to do. So we are Configuring a Web Virtual Machine using Docker.
 
-Our host for this is going to be webservers hence why we uncommented and added the IP addresses
+Our host for this is going to be webservers hence why we uncommented and added the IP addresses.
 
-Last but not least we have become true. Allowing for this entire playbook to come true
+Last but not least, we have become true. Allowing for this entire playbook to come true.
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DockerUpdate.PNG)
 
-This segment is saying we want docker.io to install force it to go through if we do not have it, update the chace yes, name of the process we want and the sate of the process.
+This segment is saying we want `docker.io` to install, so go ahead and force it to go through if we do not have it, update the cache to `yes`, name of the process we want and the state of the process.
 
 In the next segment we are installing pip3 which is pulling from a index of python libary that is unable to be carried with python when we install python.
 
@@ -173,17 +179,17 @@ The next step should look like this...
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DockerModule.PNG)
 
-The next step in the playbook is going to start the webserver and open the desired ports you want. this is also where you want to include the most important piece in all of the ansible-playbook in my opinion. That would be the restart_policy: always. If you do not include this, you will have to always restart the playbook in order for the webserver to start up instead of starting up when you start up your machine.
+The next step in the playbook is going to start the webserver and open the desired ports you want. This is also where you want to include the most important piece in all of the ansible-playbook in my opinion. That would be the restart_policy: `always`. If you do not include this, you will have to always restart the playbook in order for the webserver to start up instead of starting up when you start up your machine.
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/DVWA.PNG)
 
-The final step in a playbook is making sure that the service is up and running. The first line in this is the name of the service we are running. The second line is the command we are running. the third is the name of service we are running. and the fourth is what we want to do with the service, do we want it enabled or disbaled.
+The final step in a playbook is making sure that the service is up and running. The first line in this is the name of the service we are running. The second line is the command we are running. The third line is the name of service we are running. Lastly, the fourth line is what we want to do with the service, do we want it enabled or disbaled.
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/service.PNG)
 
-Now that we have completed that we are going to run this command; ansible-playbook pentest.yml
+Now that we have completed that we are going to run this command `ansible-playbook pentest.yml`.
 
-You should get this read(mine is a bit differnt and says OK yours should say changed) the only reason its differnt is because I have ran this before.
+You should get this read...
 
 ![](https://github.com/DyamiEnvii/Dyami-s-Repo/blob/main/Images/Output.PNG)
 

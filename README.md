@@ -4,7 +4,7 @@ The files in this repository were used to configure the network depicted below.
 
 ![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/9b881559124dea34dfd54d204d01846ba3a7ec81/Diagrams/Network%20Diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the file-playbook.yml may be used to install only certain pieces of it, such as Filebeat.
 
 https://github.com/HannaKalantar/Elk-Stack-Project/blob/9b881559124dea34dfd54d204d01846ba3a7ec81/Ansible/file-playbook.yml
 
@@ -34,7 +34,6 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
   - Metricbeat is recording the statics of the files and/or logs you have specified for it look for. 
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
@@ -72,7 +71,6 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 - What is the main advantage of automating configuration with Ansible?
   - Main advantage would be being able to copy a master copy of the playbook and copying into the container that you want to run it off of. Making it easy for updating the file if need be and makes the tedious changes easy.
 

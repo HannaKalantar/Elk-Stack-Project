@@ -92,7 +92,7 @@ We have installed the following Beats on these machines:
 Side Note: Filebat is collecting the system log information and storing that information into a designated location, and will be readable using kibana.
 
 ### Using the Playbook
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned.
 
 SSH into the control node and follow the steps below:
 - Copy the ansible file to the designated container.

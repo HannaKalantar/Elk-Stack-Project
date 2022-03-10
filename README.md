@@ -100,7 +100,7 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to Kibana<also the public ip address of the elk server:port address that you opened((5601))> to check that the installation worked as expected.
 
 - The file that is the playbook is called elk.yml and you copy this file into the /etc/ansible/directory.
-- In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your url should read something similar to this http://13.77.219.27:5601/app/kibana#/home.
+- In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your URL should read something similar to this http://13.77.219.27:5601/app/kibana#/home.
 
 ### Step by Step from Downloading Docker to Setting up a Playbook
 

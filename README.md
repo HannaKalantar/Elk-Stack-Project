@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/9b881559124dea34dfd54d204d01846ba3a7ec81/Diagrams/Network%20Diagram.png)
+![](https://github.com/HannaKalantar/Elk-Stack-Project/blob/f9a6d7b44bd630037fc970105767a0d355927015/Diagrams/Diagram.drawio.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the file-playbook.yml may be used to install only certain pieces of it, such as Filebeat.
 
@@ -22,16 +22,14 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly accessable, in addition to restricting non-authorized to the network.
-- What aspect of security do load balancers protect? What is the advantage of a jump box?
-  - Load balancers can protect you against a Ddos attack due to its ability to split the work between two different servers, allowing one to go down and the system will still be running due to the load balancer now turning all the task back on to only one server instead of both. 
-- What is the advantage of a jump box? 
-  - The advantage of a jumpbox is that you have only one location that can be used to access multiple location this also allows for very good protection for all other locations you may have.
+
+- Load balancers can protect you against a Ddos attack due to its ability to split the work between two different servers, allowing one to go down and the system will still be running due to the load balancer now turning all the task back on to only one server instead of both. 
+- The advantage of a jumpbox is that you have only one location that can be used to access multiple location this also allows for very good protection for all other locations you may have.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system matrix.
-- What does Filebeat watch for? 
-  - Filebeat is watching for specific logs and specific set of files you have set. 
-- What does Metricbeat record? 
-  - Metricbeat is recording the statics of the files and/or logs you have specified for it look for. 
+
+- Filebeat is watching for specific logs and specific set of files you have set. 
+- Metricbeat is recording the statics of the files and/or logs you have specified for it look for. 
 
 The configuration details of each machine may be found below.
 
@@ -44,21 +42,19 @@ The configuration details of each machine may be found below.
 
 ### Access Policies
 
-The machines on the internal network are not exposed to the public Internet. 
+- The machines on the internal network are not exposed to the public Internet. 
+- Only the jump box machine can accept connections from the Internet.
+- Access to this machine is only allowed from my own personal public IP address in order to pass through the firewall.
+- Machines within the network can only be accessed by JumpBoxRedTeamProvisioner.
 
-Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- In order to connect to the machine you will want to set a rule allowing for your own personal public ip address to pass through the firewall.
-
-Machines within the network can only be accessed by JumpBoxRedTeamProvisioner.
-- Which machine did you allow to access your ELK VM? What was its IP address? 
-  - I accessed the elk vm from the container located in our ansible-playbooks. 
-- To find the container that allows you to access the elk vm, follow these steps as I did...
-  - Connect to your jump box machine
+- If you want to access the ELK VM you must first start from the container located in your ansible-playbooks. 
+- To find the container that allows you to access the ELK VM, the following steps must occur...
+  - Connecting to your jump box machine
   - `sudo docker container list -a`
-  - Find your container, mine is called "quirky_herschel"
+  - Find the container, mine is called "quirky_herschel"
   - `sudo docker start quirky_herschel`
   - `sudo docker attach quirky_herschel`
-  - At this point you can now SSH into your ELK machine
+  - At this point you can SSH into your ELK machine
  
 A summary of the access policies in place can be found in the table below.
 
@@ -71,17 +67,14 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-- What is the main advantage of automating configuration with Ansible?
-  - Main advantage would be being able to copy a master copy of the playbook and copying into the container that you want to run it off of. Making it easy for updating the file if need be and makes the tedious changes easy.
+The main advantage of automating configuration with Ansible is that it allows me the capability to copy a master copy of the playbook and then being able to copy into the container that I want to run it off of. This makes it easy to update the file if ever needed and makes the tedious changes more easy.
 
 The playbook implements the following tasks:
-- The playbook will first install docker.io on to all webservers that have been underlined in the hosts file. after that it will follow and install the rest python3-pip, and - docker module.
 
-- The second task in our playbook will run a systemctl command to insure that the memory that is being used is within a stated amount
-
-- The third task that is being used in our playbook is installing and elk container with certain ports open allowing for us to get into it after succesful download the playbook will run its final task
-
-- The final task will be used as a systemd command to ensure that the service that has been installed and configured is up and running with no issues.
+1) First the playbook will install docker.io on to all webservers that have been underlined in the hosts file. After that it will follow and install the rest python3-pip, and - docker module.
+2) The second task in our playbook will run a systemctl command to insure that the memory that is being used is within a stated amount
+3) The third task that is being used in our playbook is installing and elk container with certain ports open allowing for us to get into it after succesful download the playbook will run its final task
+4) Fourth task will be used as a systemd command to ensure that the service that has been installed and configured is up and running with no issues.
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -96,8 +89,7 @@ We have installed the following Beats on these machines:
 - Metricbeat 
 - Filebeat
 
-These Beats allow us to collect the following information from each machine:
-- Filebat is collecting the system log information and storing that information into a designated location, and will be readable using kibana.
+Side Note: Filebat is collecting the system log information and storing that information into a designated location, and will be readable using kibana.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -107,16 +99,13 @@ SSH into the control node and follow the steps below:
 - Update the host file to include all webservers that you are requesting as well as uncommenting [webservers] and adding underneath your webservers ip addresses you will be adding a [elk] and the elks IP address. Next to all IP addresses you need to include ansible_python_interpreter=/usr/bin/python3.
 - Run the playbook, and navigate to Kibana<also the public ip address of the elk server:port address that you opened((5601))> to check that the installation worked as expected.
 
-Answer the following questions to fill in the blanks:
-- Which file is the playbook? Where do you copy it? 
-  - The playbook to set up elk is elk.yml and you copy this file into the /etc/ansible/directory.
-- Which URL do you navigate to in order to check that the ELK server is running? 
-  - In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your url should read something similar to this http://13.77.219.27:5601/app/kibana#/home.
+- The file that is the playbook is called elk.yml and you copy this file into the /etc/ansible/directory.
+- In order to check if your elk server is up and running, you need to connect to the public IP address of the elk machine in a browser with the open port. Thus, your url should read something similar to this http://13.77.219.27:5601/app/kibana#/home.
 
 ### Step by Step from Downloading Docker to Setting up a Playbook
 
 In order to run this set of dockers you will want to run the commands as follows. 
-Note: This can only work if you already have set up a Azure VMs. 
+Note: This can only work if you already have set up Azure VMs. 
 
 `sudo apt install docker.io`
 
@@ -140,17 +129,17 @@ Once you have done that you will want to locate the files.
 
 `cd /etc/ansible` once you have moved into the directory `/etc/` and moved into ansible you will want to run a `ls` to confirm your files are there.
 
-Now that you have done all previous steps, you will be able to adjust the playbook files here. This will allow you to overwrite your playbooks, update your config files into include new webservers, or even new elk servers.
+Now that you have done all previous steps, you will be able to adjust the playbook files here. This will allow you to overwrite your playbooks, update your config files to include new webservers, or even new elk servers.
 
-The first file we should look at is the hosts file. In here you will want to remove the # next to [webservers] and underneath a couple of lines that are already added there you will want to add the IP addresses that you want for your webservers for example mine being 10.0.0.6. Once you have added that you will want to hit tab and add the following line next to it. `ansible_python_interpreter=/usr/bin/python3` this will allow for your python-pip3 that you installed in your playbooks to work with out an issue.
+The first file we should look at is the hosts file. In here you will want to remove the # next to [webservers] and underneath a couple of lines that are already added. Then you will want to add the IP addresses that you want for your webservers. For example, mine is 10.0.0.6. Once you have added that, you will want to hit tab and add the following line next to it: `ansible_python_interpreter=/usr/bin/python3`. Rhis will allow your python-pip3 that you installed in your playbooks to work with out any issues.
 
-After we are done with the our changes to the hosts file we are going to save and exit and go into our configure file for ansible.
+After we are done with our changes to the hosts file we are going to save, exit and go into our configure file for ansible.
 
 Once we are in the ansbile.cfg file, we are going to page down to the remote_user section of this file and change the remote_user= sysadmin to the username that you used to set up your VM. This will also be commented. You will want to uncomment the line after changing the username to your username.
 
-Now that we have set up both of our hosts and configure files we are now going to create a play book.
+Now that we have set up both of our hosts and configure files we are now going to create a playbook.
 
-Start your container (if it already is not started) and make sure on your command like is comming directly from your root. For example, check your screen to see if you see something like root@5e4b8f36e048:~#.
+Start your container (if it already is not started) and make sure on your command is comming directly from root. For example, check your screen to see if you see something like root@5e4b8f36e048:~#.
 
 When you are in here you are more than welcome to create a playboook, for this exercise we are creating a DVWA (Damn Vulnerable Website App) so this playbook will be for that.
 
@@ -194,4 +183,5 @@ You should get this read:
 
 If you would like to test that the webserver is up an running you can ssh into your PRIVATE Ip address of your webserver using ssh @.
 
-Now you have successfully set up a webserver, playbook, configure file, and a host file.
+At this point you have successfully set up a webserver, playbook, configure file, and a host file.
+Thank you for reading!

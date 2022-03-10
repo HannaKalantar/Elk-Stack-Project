@@ -71,7 +71,7 @@ The main advantage of automating configuration with Ansible is that it allows me
 
 The playbook implements the following tasks:
 
-1) First the playbook will install docker.io on to all webservers that have been underlined in the hosts file. After that it will follow and install the rest python3-pip, and - docker module.
+1) First, the playbook will install docker.io on to all webservers that have been underlined in the hosts file. After that, it will follow and install the rest python3-pip, and - docker module.
 2) The second task in our playbook will run a systemctl command to insure that the memory that is being used is within a stated amount
 3) The third task that is being used in our playbook is installing and elk container with certain ports open allowing for us to get into it after succesful download the playbook will run its final task
 4) Fourth task will be used as a systemd command to ensure that the service that has been installed and configured is up and running with no issues.

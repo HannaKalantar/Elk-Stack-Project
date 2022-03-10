@@ -67,7 +67,7 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-The main advantage of automating configuration with Ansible is that it allows me the capability to copy a master copy of the playbook and then being able to copy into the container that I want to run it off of. This makes it easy to update the file if ever needed and makes the tedious changes more easy.
+The main advantage of automating configuration with Ansible is that it allows me the capability to copy a master copy of the playbook and then being able to copy into the container that I want to run it off of. This makes it easy to update or change the file if ever needed.
 
 The playbook implements the following tasks:
 

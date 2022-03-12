@@ -24,7 +24,7 @@
          # Use command module
         - name: setup metric beat
           command: #TODO
-		  
+
          # Use command module
         - name: start metric beat
           command: TODO

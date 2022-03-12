@@ -22,7 +22,7 @@
 
         - name: start filebeat service
           command: service filebeat start
-	  
+
         - name: enable service filebeat on boot
           systemd:
                 name: TODO
